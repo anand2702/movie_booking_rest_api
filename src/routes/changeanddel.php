@@ -49,8 +49,6 @@ function change(){
 
 // Delete Booking
 function del(){
-    $id = $request->getAttribute('id');
-
     $sql = "DELETE FROM bookings WHERE status = 'Expired'";
 
     try{

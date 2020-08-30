@@ -4,7 +4,7 @@
         private $dbhost = 'localhost';
         private $dbuser = 'root';
         private $dbpass = '';
-        private $dbname = 'movie_ticket';
+        private $dbname = 'ticket';
 
         // Connect
         public function connect(){

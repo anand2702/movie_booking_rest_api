@@ -16,5 +16,5 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
 // Customer Routes
 require '../src/routes/customers.php';
 
-require '../src/routes/changeanddel.php';
+#require '../src/routes/changeanddel.php';
 $app->run();
