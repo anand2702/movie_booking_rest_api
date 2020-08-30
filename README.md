@@ -1,4 +1,4 @@
-# Movie Booing REST API
+# Booking REST API
 
 This is a REST api built with the SlimPHP framework and uses MySQL for storage.
 
@@ -8,7 +8,7 @@ This is a REST api built with the SlimPHP framework and uses MySQL for storage.
 
 ### Installation
 
-Create database or import from _sql/slimapp.sql
+Create database or import from _sql/customer.sql
 
 Edit db/config params
 
