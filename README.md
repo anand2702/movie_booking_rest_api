@@ -5,7 +5,7 @@ This is a REST api built with the SlimPHP framework and uses MySQL for storage.
 This API helps fetch ticket data from DB, or update, delete or create tickets. Also, tickets are automatically deleted after 8 hours of their show time. MongoDB's TTL index has been used to achieve auto deletion after expiry.
 
 
-##Assumptions
+## Assumptions
 
 1.As no details about timing was provided, it is assumed that the timing is in 24-hours format
 
