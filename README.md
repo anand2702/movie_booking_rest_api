@@ -2,6 +2,19 @@
 
 This is a REST api built with the SlimPHP framework and uses MySQL for storage.
 
+This API helps fetch ticket data from DB, or update, delete or create tickets. Also, tickets are automatically deleted after 8 hours of their show time. MongoDB's TTL index has been used to achieve auto deletion after expiry.
+
+
+##Assumptions
+
+1.As no details about timing was provided, it is assumed that the timing is in 24-hours format
+
+2.It is assumed that the bookings are made taking into account only start time, no end time is considered for a show.
+
+3.Movie length isn't considered in booking ticket.
+
+
+
 ### Description
 
 A table named bookings has been created with the following given description.
@@ -24,14 +37,14 @@ $ composer
 ### API Endpints
 ```sh
 
-$ GET http://localhost/slim/public/index.php/booked_tickets  ->  It displays a list of all the bookings made along with user details.
+$ GET http://localhost/slim/public/index.php/booked_tickets/{timing}  ->  It displays a list of all the bookings made along with user details.
 ```
 
 ![](ScreenShots/GetRequest.png)
 
 ```sh
 
-$ GET http://localhost/slim/public/index.php/booked_tickets/{id}  ->  It displays the details of booking of that specific id.
+$ GET http://localhost/slim/public/index.php/booked_ticket/{id}  ->  It displays the details of booking of that specific id.
 ```
 ![](ScreenShots/GetDetailsByID.png)
 

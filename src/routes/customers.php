@@ -16,8 +16,10 @@ $app->add(function ($req, $res, $next) {
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 });
 
-$app->get('/booked_tickets', function(Request $request, Response $response){
-    $sql = "SELECT * FROM bookings";
+$app->get('/booked_tickets/{timings}', function(Request $request, Response $response, $args) {
+    $datentime = $request->getAttribute('timings');
+    echo $datentime;
+    $sql = "SELECT * FROM bookings WHERE datentime='$datentime'";
 
     try{
         $db = new db();
@@ -34,7 +36,7 @@ $app->get('/booked_tickets', function(Request $request, Response $response){
     }
 });
 
-$app->get('/booked_tickets/{id}', function(Request $request, Response $response){
+$app->get('/booked_ticket/{id}', function(Request $request, Response $response){
     $id = $request->getAttribute('id');
 
     $sql = "SELECT * FROM bookings WHERE id = $id";
