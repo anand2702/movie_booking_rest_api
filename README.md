@@ -57,11 +57,12 @@ $ POST http://localhost/slim/public/index.php/book_ticket  ->  It is used to mak
 
 ![](ScreenShots/Add_booking.png)
 
-
+```sh
 If there are more than 20 bookings at a particular date and time then an error message is shown.
+```
 
 
-[](ScreenShots/Error_booking.png)
+![](ScreenShots/Error_booking.png)
 
 
 
