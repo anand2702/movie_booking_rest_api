@@ -7,7 +7,7 @@ This is a REST api built with the SlimPHP framework and uses MySQL for storage.
 A table named bookings has been created with the following given description.
 
 <div align="center">
-    <img src="../ScreenShots/TableDesription.png" width="400px"></img> 
+    <img src="https://github.com/anand2702/movie_booking_rest_api/tree/master/ScreenShots/TableDesription.png" width="400px"></img> 
 </div>
 
 
