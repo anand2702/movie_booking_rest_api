@@ -114,8 +114,8 @@ Steps to do so in form of ScreenShots are given below:-
 ```sh
 Ouput after running the autorun program i.e updating ticket to expired and then deleting it.
 ```
-![](ScreenShots/output1.png)
+![](ScreenShots/Output1.png)
 
-![](ScreenShots/output2.png)
+![](ScreenShots/Output2.png)
 
 
