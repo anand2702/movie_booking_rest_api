@@ -34,7 +34,7 @@ Install SlimPHP and dependencies
 ```sh
 $ composer
 ```
-### API Endpints
+### API Endpoints
 ```sh
 
 $ GET http://localhost/slim/public/index.php/booked_tickets/{timing}  ->  It displays a list of all the bookings made along with user details.
