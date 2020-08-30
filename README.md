@@ -6,13 +6,7 @@ This is a REST api built with the SlimPHP framework and uses MySQL for storage.
 
 A table named bookings has been created with the following given description.
 
-<<<<<<< HEAD
-<div align="center">
-    <img src="https://github.com/anand2702/movie_booking_rest_api/tree/master/ScreenShots/TableDesription.png" width="400px"></img> 
-</div>
-=======
 ![](ScreenShots/TableDescription.png)
->>>>>>> 0eb3b84... Updated Readme
 
 
 ### Usage
@@ -41,11 +35,23 @@ $ GET http://localhost/slim/public/index.php/booked_tickets/{id}  ->  It display
 ```
 ![](ScreenShots/GetDetailsByID.png)
 
+
 ```sh
 
 $ POST http://localhost/slim/public/index.php/book_ticket  ->  It is used to make a new booking which takes care that there are no more than 20 bookings on any date and time. The input parameters required are "name","phone","email","datentime" and "gender".
 ```
-![](ScreenShots/AddBooking.png)
+
+
+![](ScreenShots/Add_booking.png)
+
+
+If there are more than 20 bookings at a particular date and time then an error message is shown.
+
+
+[](ScreenShots/Error_booking.png)
+
+
+
 
 ```sh
 $ PUT http://localhost/slim/public/index.php/update/{id}  ->  It modifies the booking datentime of column and again takes care of the condition that there are no more than 20 bookings at that date and time. The input parameter required is "datentime".
@@ -65,7 +71,6 @@ $ DELETE http://localhost/slim/public/index.php/delete/{id}  ->  It is used to d
 ![](ScreenShots/Delete.png)
 
 
-
 ```sh
 ### Now to auto update the status to expired and then delete the expired tickets we will need Cron Job.
 We need two files one to run the script that we want torun at a specific time interval and the other to give the location.
@@ -75,14 +80,23 @@ Those two files are provided in Autorun.
 Now, we are ready to set the Windows Task Scheduler to run shellscript.vbs at the required time interval:
 
 1.Open Task Scheduler from windows Start menu
+
 2.Go to Action menu and hit Create Task...
+
 3.in General tab, fill the Name and Description fields as you want
+
 4.in Triggers tab, hit New button.
+
 5.from Begin the Task dropdown, select On a schedule and choose Daily
+
 6.from Advanced settings section, select Repeat task every as you want and set for a duration on Indefinitely.
+
 7.on Actions tab, from Action dropdown, select Start a program.
+
 8.on the Program\script box, enter path to shellscript.vbs like C:\path\to\shellscript.vbs.
+
 9.leave Add argumentts (optional) section empty.
+
 10.in Start in (optional) box, enter parent directory of shellscript.vbs like C:\path\to\.
 
 Steps to do so in form of ScreenShots are given below:-
@@ -103,3 +117,5 @@ Ouput after running the autorun program i.e updating ticket to expired and then 
 ![](ScreenShots/output1.png)
 
 ![](ScreenShots/output2.png)
+
+
