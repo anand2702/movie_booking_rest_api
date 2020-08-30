@@ -56,17 +56,34 @@ $app->get('/booked_tickets/{id}', function(Request $request, Response $response)
     }
 });
 
-// Add Customer
-$app->post('/bokk_ticket', function(Request $request, Response $response){
+// Make bookings
+$app->post('/book_ticket', function(Request $request, Response $response){
+    //echo "post"."<br>";
     $name = $request->getParam('name');
     $phone = $request->getParam('phone');
     $email = $request->getParam('email');
     $gender = $request->getParam('gender');
-    $date = $request->getParam('date');
-    $time = $request->getParam('time');
+    $datentime = $request->getParam('datentime');
+    
+    
+    $sql = "SELECT * FROM bookings where datentime='$datentime'";
+
+    try{
+        $db1 = new db();
+        $db1 = $db1->connect();
+       // echo "try"."<br>";
+        $stmt = $db1->query($sql);
+        $customers = $stmt->fetchAll(PDO::FETCH_OBJ);
+        //echo "try"."<br>"; 
+        //echo "printing".$stmt->rowCount()."<br>";
+        //echo "try"."<br>";
+        $db1 = null;
+        if ($stmt->rowCount() <= 19){
+        //echo "in if"."<br>";
+        
     $status= "Approved";
-    $sql = "INSERT INTO bookings (name,phone,email,gender,date,time,status) VALUES
-    (:name,:phone,:email,:gender,:date,:time,:status)";
+    $sql = "INSERT INTO bookings (name,phone,email,gender,status,datentime) VALUES
+    (:name,:phone,:email,:gender,:status,:datentime)";
 
     try{
         // Get DB Object
@@ -80,10 +97,9 @@ $app->post('/bokk_ticket', function(Request $request, Response $response){
         $stmt->bindParam(':phone',      $phone);
         $stmt->bindParam(':email',      $email);
         $stmt->bindParam(':gender',    $gender);
-        $stmt->bindParam(':date',       $date);
-        $stmt->bindParam(':time',      $time);
         $stmt->bindParam(':status',      $status);
-
+        $stmt->bindParam(':datentime',       $datentime);
+        
         $stmt->execute();
 
         echo '{"notice": {"text": "Booking done"}';
@@ -91,55 +107,81 @@ $app->post('/bokk_ticket', function(Request $request, Response $response){
     } catch(PDOException $e){
         echo '{"error": {"text": '.$e->getMessage().'}';
     }
+
+        
+    } 
+    else{
+        echo "Please choose a different time or date";
+
+    }
+} 
+catch(PDOException $e){
+    echo '{"error": {"text": '.$e->getMessage().'}';
+}
+
 });
 
-// Update Customer
-$app->put('/api/customer/update/{id}', function(Request $request, Response $response){
-    $id = $request->getAttribute('id');
-    $first_name = $request->getParam('first_name');
-    $last_name = $request->getParam('last_name');
-    $phone = $request->getParam('phone');
-    $email = $request->getParam('email');
-    $address = $request->getParam('address');
-    $city = $request->getParam('city');
-    $state = $request->getParam('state');
 
-    $sql = "UPDATE customers SET
-				first_name 	= :first_name,
-				last_name 	= :last_name,
-                phone		= :phone,
-                email		= :email,
-                address 	= :address,
-                city 		= :city,
-                state		= :state
+
+//Update Bookings
+
+
+
+$app->put('/update/{id}', function(Request $request, Response $response){
+    $id = $request->getAttribute('id');
+    $datentime = $request->getParam('datentime');
+    $sql = "SELECT * FROM bookings where datentime='$datentime'";
+    echo $datentime;
+    try{
+        $db1 = new db();
+        $db1 = $db1->connect();
+       // echo "try"."<br>";
+        $stmt = $db1->query($sql);
+        $customers = $stmt->fetchAll(PDO::FETCH_OBJ);
+        //echo "try"."<br>"; 
+        //echo "printing".$stmt->rowCount()."<br>";
+        //echo "try"."<br>";
+        $db1 = null;
+        if ($stmt->rowCount() <= 19){
+        //echo "in if"."<br>";
+        
+    
+
+    $sql = "UPDATE bookings SET
+                datentime= :datentime
 			WHERE id = $id";
 
     try{
-        // Get DB Object
         $db = new db();
-        // Connect
         $db = $db->connect();
 
         $stmt = $db->prepare($sql);
 
-        $stmt->bindParam(':first_name', $first_name);
-        $stmt->bindParam(':last_name',  $last_name);
-        $stmt->bindParam(':phone',      $phone);
-        $stmt->bindParam(':email',      $email);
-        $stmt->bindParam(':address',    $address);
-        $stmt->bindParam(':city',       $city);
-        $stmt->bindParam(':state',      $state);
+        
+        $stmt->bindParam(':datentime',       $datentime);
+        
 
         $stmt->execute();
 
         echo '{"notice": {"text": "Customer Updated"}';
-
-    } catch(PDOException $e){
-        echo '{"error": {"text": '.$e->getMessage().'}';
     }
+    
+    catch(PDOException $e){
+        echo '{"error1": {"text": '.$e->getMessage().'}';
+    }}
+    else
+    {
+        echo "Choose different date or/and time";
+
+    }
+
+} 
+catch(PDOException $e){
+    echo "catch 2";
+    echo '{"error2": {"text": '.$e->getMessage().'}';}
 });
 
-// Delete Customer
+// Delete Booking
 $app->delete('/delete/{id}', function(Request $request, Response $response){
     $id = $request->getAttribute('id');
 
