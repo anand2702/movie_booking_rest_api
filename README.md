@@ -20,7 +20,9 @@ This API helps fetch ticket data from Database, or update, delete or create tick
 A table named bookings has been created with the following given description.
 
 ![](ScreenShots/TableDescription.png)
-
+```sh
+datentime field is given input in the format yyyy-mm-dd hh:mm:ss
+```
 
 ### Usage
 ### Installation
@@ -37,25 +39,41 @@ $ composer
 ### API Endpoints
 ```sh
 
-$ GET http://localhost/slim/public/index.php/booked_tickets/{timing}  ->  It displays a list of all the bookings made along with user details.
+$ GET http://localhost/slim/public/index.php/booked_tickets/{timing}  ->  It displays a list of all the bookings for that timings.
+The timings need to be of format dddd-mm-dd hh:mm:ss.
+
+Example -> http://localhost/slim/public/index.php/booked_tickets/2020-10-10 22:00:00
+
 ```
 
 ![](ScreenShots/GetRequest.png)
 
+
 ```sh
 
 $ GET http://localhost/slim/public/index.php/booked_ticket/{id}  ->  It displays the details of booking of that specific id.
+Id is an integer value.
+
+Example -> http://localhost/slim/public/index.php/booked_ticket/1
+
+
 ```
+
 ![](ScreenShots/GetDetailsByID.png)
 
 
 ```sh
 
-$ POST http://localhost/slim/public/index.php/book_ticket  ->  It is used to make a new booking which takes care that there are no more than 20 bookings on any date and time. The input parameters required are "name","phone","email","datentime" and "gender".
+$ POST http://localhost/slim/public/index.php/book_ticket  ->  It is used to make a new booking which takes care that there are 
+no more than 20 bookings on any date and time. 
+The input parameters required are "name","phone","email","datentime" and "gender".
+
+
 ```
 
 
 ![](ScreenShots/Add_booking.png)
+
 
 ```sh
 If there are more than 20 bookings at a particular date and time then an error message is shown.
@@ -86,7 +104,7 @@ $ DELETE http://localhost/slim/public/index.php/delete/{id}  ->  It is used to d
 
 
 ```sh
-### Now to auto update the status to expired and then delete the expired tickets we will need Cron Job.
+Now to auto update the status to expired and then delete the expired tickets we will need Cron Job.
 We need two files one to run the script that we want torun at a specific time interval and the other to give the location.
 Those two files are provided in Autorun.
 ```
@@ -117,6 +135,7 @@ Steps to do so in form of ScreenShots are given below:-
 
 
 ![](ScreenShots/AutorunSetting1.png)
+
 ![](ScreenShots/AutorunSetting2.png)
 
 
@@ -128,7 +147,9 @@ Steps to do so in form of ScreenShots are given below:-
 ```sh
 Ouput after running the autorun program i.e updating ticket to expired and then deleting it.
 ```
+
 ![](ScreenShots/Output1.png)
+
 
 ![](ScreenShots/Output2.png)
 
